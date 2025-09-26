@@ -1,0 +1,41 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Sensitive files
+googleeCWixjcU74kz7JsI7GlTTBNrTAFFx-sW5oX2Aid.html
+google-site-verification.html
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+RANKING-ROADMAP.md
+SEO-SETUP.md
+DEPLOYMENT_QUICKSTART.md
+.vscode/*
+!.vscode/settings.json
+
+DEPLOYMENT_QUICKSTART.md
+GOOGLE-VERIFICATION.md
+DEPLOYMENT_SEO_GUIDE.md
+HOSTING_SETUP_VERCEL.md
+.vercel

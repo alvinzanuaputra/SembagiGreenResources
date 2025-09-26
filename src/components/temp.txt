@@ -1,0 +1,2232 @@
+import { motion } from 'framer-motion';
+import { CheckCircle, Target, Eye, Award } from 'lucide-react';
+import { companyInfo, fadeInUp, staggerContainer } from '../utils/constants';
+
+interface AboutProps {
+  className?: string;
+}
+
+export default function About({ className = '' }: AboutProps) {
+  return (
+    <section id="about" className={`section-padding bg-gray-50 ${className}`}>
+      <div className="container-responsive">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Column - Content */}
+          <motion.div
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="space-y-8"
+          >
+            {/* Section Header */}
+            <div>
+              <motion.span
+                variants={fadeInUp}
+                className="inline-block text-primary-600 font-semibold text-lg mb-3"
+              >
+                Tentang Kami
+              </motion.span>
+              <motion.h2
+                variants={fadeInUp}
+                className="heading-secondary text-gray-900 mb-6"
+              >
+                {companyInfo.brandName}
+              </motion.h2>
+              <motion.p
+                variants={fadeInUp}
+                className="text-large text-gray-600 leading-relaxed"
+              >
+                {companyInfo.description}
+              </motion.p>
+            </div>
+
+            {/* Mission & Vision */}
+            <motion.div variants={fadeInUp} className="space-y-6">
+              <div className="bg-white p-6 rounded-xl shadow-sm">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Target className="w-6 h-6 text-primary-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Misi Kami</h3>
+                    <p className="text-gray-600 leading-relaxed">{companyInfo.mission}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-xl shadow-sm">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Eye className="w-6 h-6 text-primary-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Visi Kami</h3>
+                    <p className="text-gray-600 leading-relaxed">{companyInfo.vision}</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Company Values */}
+            <motion.div variants={fadeInUp} className="space-y-4">
+              <h3 className="text-xl font-semibold text-gray-900">Nilai-Nilai Perusahaan</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {companyInfo.values.map((value, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-primary-600 flex-shrink-0" />
+                    <span className="text-gray-700 text-sm">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Certifications */}
+            <motion.div variants={fadeInUp} className="bg-white p-6 rounded-xl shadow-sm">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Award className="w-6 h-6 text-yellow-600" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Sertifikasi & Standar</h3>
+                  <ul className="space-y-2">
+                    {companyInfo.certifications.map((cert, index) => (
+                      <li key={index} className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
+                        <span className="text-gray-600">{cert}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column - Images and Stats */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
+          >
+            {/* Main Image */}
+            <div className="relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src="/assets/images/3-gogreen.jpg"
+                  alt="Fasilitas Produksi Sembagi Green Resources"
+                  className="w-full h-80 lg:h-96 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/20 to-transparent"></div>
+              </div>
+              
+              {/* Floating Stats Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="absolute -bottom-8 -left-8 bg-white p-6 rounded-xl shadow-xl border border-gray-100"
+              >
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary-600 mb-1">5000+</div>
+                  <div className="text-sm text-gray-600">Ton/Bulan</div>
+                  <div className="text-xs text-gray-500 mt-1">Kapasitas Produksi</div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-6 pt-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow-sm text-center"
+              >
+                <div className="text-2xl font-bold text-primary-600 mb-2">2</div>
+                <div className="text-sm text-gray-600">Lokasi</div>
+                <div className="text-xs text-gray-500 mt-1">Jepara & Purworejo</div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                className="bg-white p-6 rounded-xl shadow-sm text-center"
+              >
+                <div className="text-2xl font-bold text-primary-600 mb-2">4300</div>
+                <div className="text-sm text-gray-600">Max Kcal</div>
+                <div className="text-xs text-gray-500 mt-1">Nilai Kalori</div>
+              </motion.div>
+            </div>
+
+            {/* Secondary Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="relative rounded-xl overflow-hidden shadow-lg"
+            >
+              <img
+                src="/assets/images/4-gogreen.jpg"
+                alt="Produk Woodchip Berkualitas"
+                className="w-full h-48 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary-900/30 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <div className="text-lg font-semibold">Kualitas Premium</div>
+                <div className="text-sm opacity-90">Standar Internasional</div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Send, MapPin, Phone, Mail, Clock, Building } from 'lucide-react';
+import { contactInfo, fadeInUp, staggerContainer } from '../utils/constants';
+
+// Form validation schema
+const contactFormSchema = z.object({
+  name: z.string().min(2, 'Nama minimal 2 karakter').max(100, 'Nama maksimal 100 karakter'),
+  company: z.string().min(2, 'Nama perusahaan minimal 2 karakter').max(100, 'Nama perusahaan maksimal 100 karakter'),
+  email: z.string().email('Email tidak valid').max(255, 'Email maksimal 255 karakter'),
+  phone: z.string().min(10, 'Nomor telepon minimal 10 digit').max(15, 'Nomor telepon maksimal 15 digit'),
+  message: z.string().min(10, 'Pesan minimal 10 karakter').max(1000, 'Pesan maksimal 1000 karakter'),
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
+
+interface ContactProps {
+  className?: string;
+}
+
+export default function Contact({ className = '' }: ContactProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Here you would typically send the data to your backend
+      console.log('Contact form submitted:', data);
+      
+      setIsSubmitted(true);
+      
+      // Reset form after showing success
+      setTimeout(() => {
+        reset();
+        setIsSubmitted(false);
+      }, 3000);
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleWhatsAppClick = () => {
+    const message = 'Halo, saya tertarik untuk mengetahui lebih lanjut tentang produk woodchip Sembagi Green Resources.';
+    const whatsappUrl = `https://wa.me/6282150617811?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  return (
+    <section id="contact" className={`section-padding bg-gray-50 ${className}`}>
+      <div className="container-responsive">
+        {/* Section Header */}
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="text-center mb-16"
+        >
+          <motion.span
+            variants={fadeInUp}
+            className="inline-block text-primary-600 font-semibold text-lg mb-3"
+          >
+            Hubungi Kami
+          </motion.span>
+          <motion.h2
+            variants={fadeInUp}
+            className="heading-secondary text-gray-900 mb-6"
+          >
+            Mari Diskusikan Kebutuhan Anda
+          </motion.h2>
+          <motion.p
+            variants={fadeInUp}
+            className="text-large text-gray-600 max-w-3xl mx-auto"
+          >
+            Tim ahli kami siap membantu Anda menemukan solusi woodchip yang tepat 
+            untuk kebutuhan energi terbarukan perusahaan Anda.
+          </motion.p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-1 space-y-8"
+          >
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-6">Informasi Kontak</h3>
+              
+              {/* WhatsApp */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 cursor-pointer"
+                onClick={handleWhatsAppClick}
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">WhatsApp</h4>
+                    <p className="text-gray-600 text-sm mb-2">{contactInfo.whatsapp}</p>
+                    <p className="text-green-600 text-sm font-medium">
+                      Contact: {contactInfo.whatsappName}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Locations */}
+              <div className="space-y-4">
+                {contactInfo.locations.map((location, index) => (
+                  <div key={index} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div className="flex items-start space-x-4">
+                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                        location.type === 'factory' 
+                          ? 'bg-blue-100' 
+                          : 'bg-gray-100'
+                      }`}>
+                        {location.type === 'factory' ? (
+                          <Building className="w-6 h-6 text-blue-600" />
+                        ) : (
+                          <MapPin className="w-6 h-6 text-gray-600" />
+                        )}
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">
+                          {location.name}
+                        </h4>
+                        <p className="text-gray-600 text-sm">
+                          {location.address}
+                        </p>
+                        <p className="text-gray-600 text-sm">
+                          {location.city}, {location.province}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Business Hours */}
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-primary-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Jam Operasional</h4>
+                    <div className="text-sm text-gray-600 space-y-1">
+                      <div>Senin - Jumat: 08:00 - 17:00 WIB</div>
+                      <div>Sabtu: 08:00 - 12:00 WIB</div>
+                      <div>Minggu: Tutup</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-2"
+          >
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <h3 className="text-xl font-bold text-gray-900 mb-6">Kirim Pesan</h3>
+
+              {isSubmitted ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center py-12"
+                >
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h4 className="text-xl font-semibold text-gray-900 mb-2">
+                    Pesan Terkirim!
+                  </h4>
+                  <p className="text-gray-600">
+                    Terima kasih telah menghubungi kami. Tim kami akan segera merespons pesan Anda.
+                  </p>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Name */}
+                    <div>
+                      <label className="form-label">
+                        Nama Lengkap *
+                      </label>
+                      <input
+                        {...register('name')}
+                        type="text"
+                        className={`form-input ${errors.name ? 'border-red-500' : ''}`}
+                        placeholder="Masukkan nama lengkap"
+                      />
+                      {errors.name && (
+                        <p className="form-error">{errors.name.message}</p>
+                      )}
+                    </div>
+
+                    {/* Company */}
+                    <div>
+                      <label className="form-label">
+                        Nama Perusahaan *
+                      </label>
+                      <input
+                        {...register('company')}
+                        type="text"
+                        className={`form-input ${errors.company ? 'border-red-500' : ''}`}
+                        placeholder="Masukkan nama perusahaan"
+                      />
+                      {errors.company && (
+                        <p className="form-error">{errors.company.message}</p>
+                      )}
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label className="form-label">
+                        Email *
+                      </label>
+                      <input
+                        {...register('email')}
+                        type="email"
+                        className={`form-input ${errors.email ? 'border-red-500' : ''}`}
+                        placeholder="nama@perusahaan.com"
+                      />
+                      {errors.email && (
+                        <p className="form-error">{errors.email.message}</p>
+                      )}
+                    </div>
+
+                    {/* Phone */}
+                    <div>
+                      <label className="form-label">
+                        Nomor Telepon *
+                      </label>
+                      <input
+                        {...register('phone')}
+                        type="tel"
+                        className={`form-input ${errors.phone ? 'border-red-500' : ''}`}
+                        placeholder="0812-3456-7890"
+                      />
+                      {errors.phone && (
+                        <p className="form-error">{errors.phone.message}</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label className="form-label">
+                      Pesan *
+                    </label>
+                    <textarea
+                      {...register('message')}
+                      className={`form-textarea h-32 ${errors.message ? 'border-red-500' : ''}`}
+                      placeholder="Ceritakan kebutuhan Anda atau pertanyaan tentang produk woodchip kami..."
+                    />
+                    {errors.message && (
+                      <p className="form-error">{errors.message.message}</p>
+                    )}
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full btn btn-primary btn-lg group"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Mengirim...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5 mr-2" />
+                        Kirim Pesan
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+import { motion } from 'framer-motion';
+import { MapPin, Phone, Mail, ArrowUp, Leaf, Globe, Award } from 'lucide-react';
+import { companyInfo, contactInfo, navItems } from '../utils/constants';
+
+interface FooterProps {
+  className?: string;
+}
+
+export default function Footer({ className = '' }: FooterProps) {
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleNavClick = (href: string) => {
+    if (href.startsWith('#')) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className={`bg-gray-900 text-white ${className}`}>
+      {/* Main Footer Content */}
+      <div className="container-responsive py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          {/* Company Info */}
+          <div className="lg:col-span-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              {/* Logo & Brand */}
+              <div className="flex items-center space-x-3">
+                <img
+                  src="/assets/images/1-logo-navbar.png"
+                  alt="Sembagi Green Resources"
+                  className="h-10 w-auto"
+                />
+                <div>
+                  <h3 className="text-xl font-bold text-white">
+                    {companyInfo.brandName}
+                  </h3>
+                  <p className="text-gray-400 text-sm">Go Green with Renewable Energy</p>
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-gray-300 leading-relaxed max-w-md">
+                {companyInfo.description}
+              </p>
+
+              {/* Key Features */}
+              <div className="flex flex-wrap gap-4">
+                <div className="flex items-center space-x-2 text-accent-200">
+                  <Leaf className="w-4 h-4" />
+                  <span className="text-sm">100% Berkelanjutan</span>
+                </div>
+                <div className="flex items-center space-x-2 text-accent-200">
+                  <Award className="w-4 h-4" />
+                  <span className="text-sm">Bersertifikat</span>
+                </div>
+                <div className="flex items-center space-x-2 text-accent-200">
+                  <Globe className="w-4 h-4" />
+                  <span className="text-sm">Standar Internasional</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Quick Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <h4 className="text-lg font-semibold mb-6">Menu</h4>
+            <ul className="space-y-3">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <button
+                    onClick={() => handleNavClick(item.href)}
+                    className="text-gray-300 hover:text-accent-200 transition-colors duration-200 text-sm"
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >
+            <h4 className="text-lg font-semibold mb-6">Kontak</h4>
+            <div className="space-y-4">
+              {/* WhatsApp */}
+              <div className="flex items-start space-x-3">
+                <Phone className="w-4 h-4 text-green-400 mt-1 flex-shrink-0" />
+                <div>
+                  <a 
+                    href={`https://wa.me/6282150617811?text=Halo, saya tertarik dengan produk woodchip Sembagi Green Resources`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-green-400 transition-colors text-sm"
+                  >
+                    {contactInfo.whatsapp}
+                  </a>
+                  <p className="text-gray-400 text-xs">({contactInfo.whatsappName})</p>
+                </div>
+              </div>
+
+              {/* Locations */}
+              {contactInfo.locations.map((location, index) => (
+                <div key={index} className="flex items-start space-x-3">
+                  <MapPin className="w-4 h-4 text-primary-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="text-gray-300 text-sm font-medium">{location.name}</p>
+                    <p className="text-gray-400 text-xs">
+                      {location.city}, {location.province}
+                    </p>
+                  </div>
+                </div>
+              ))}
+
+              {/* Email placeholder */}
+              <div className="flex items-start space-x-3">
+                <Mail className="w-4 h-4 text-blue-400 mt-1 flex-shrink-0" />
+                <div>
+                  <a 
+                    href="mailto:info@sembagigreen.com"
+                    className="text-gray-300 hover:text-blue-400 transition-colors text-sm"
+                  >
+                    info@sembagigreen.com
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Bottom Footer */}
+      <div className="border-t border-gray-800">
+        <div className="container-responsive py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            {/* Copyright */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-gray-400 text-sm text-center md:text-left"
+            >
+              <p>
+                © {currentYear} {companyInfo.name}. Hak cipta dilindungi.
+              </p>
+            </motion.div>
+
+            {/* Additional Links */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="flex items-center space-x-6"
+            >
+              <button
+                onClick={() => window.open('/assets/doc/Katalog Woodchip.pdf', '_blank')}
+                className="text-gray-400 hover:text-accent-200 text-sm transition-colors"
+              >
+                Download Katalog
+              </button>
+              <div className="h-4 w-px bg-gray-600"></div>
+              <div className="text-gray-400 text-sm">
+                Made with 🌱 for sustainability
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll to Top Button */}
+      <motion.button
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={handleScrollToTop}
+        className="fixed bottom-8 right-8 w-12 h-12 bg-primary-600 text-white rounded-full shadow-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200 z-40"
+        aria-label="Scroll to top"
+      >
+        <ArrowUp className="w-5 h-5 mx-auto" />
+      </motion.button>
+    </footer>
+  );
+}
+import { motion } from 'framer-motion';
+import { ArrowRight, Play, Leaf } from 'lucide-react';
+import { fadeInUp, fadeInLeft, fadeInRight } from '../utils/constants';
+
+interface HeroProps {
+  className?: string;
+}
+
+export default function Hero({ className = '' }: HeroProps) {
+  const handleScrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleWhatsAppClick = () => {
+    const message = 'Halo, saya tertarik untuk mengetahui lebih lanjut tentang produk woodchip Sembagi Green Resources untuk kebutuhan energi terbarukan.';
+    const whatsappUrl = `https://wa.me/6282150617811?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  return (
+    <section id="home" className={`relative min-h-screen flex items-center justify-center overflow-hidden ${className}`}>
+      {/* Background with Parallax Effect */}
+      <div className="absolute inset-0">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `linear-gradient(rgba(30, 122, 58, 0.8), rgba(38, 111, 58, 0.6)), url('/assets/images/2-gogreen.jpg')`,
+          }}
+        />
+        
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          {/* Floating Leaves Animation */}
+          {Array.from({ length: 6 }).map((_, index) => (
+            <motion.div
+              key={index}
+              className="absolute"
+              initial={{ 
+                x: Math.random() * window.innerWidth, 
+                y: window.innerHeight + 100 
+              }}
+              animate={{
+                x: Math.random() * window.innerWidth,
+                y: -100,
+              }}
+              transition={{
+                duration: 15 + Math.random() * 10,
+                repeat: Infinity,
+                ease: 'linear',
+                delay: Math.random() * 5,
+              }}
+            >
+              <Leaf 
+                className="w-8 h-8 text-accent-200 opacity-30" 
+                style={{
+                  transform: `rotate(${Math.random() * 360}deg)`,
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Hero Content */}
+      <div className="relative z-10 container-responsive text-center text-white">
+        <div className="max-w-4xl mx-auto">
+          {/* Main Headline */}
+          <motion.h1
+            {...fadeInUp}
+            className="heading-primary mb-6"
+            style={{ color: 'white' }}
+          >
+            <span className="block">Go Green with</span>
+            <span className="block text-accent-200">Renewable Energy</span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            {...fadeInUp}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="text-large mb-8 text-gray-100 max-w-3xl mx-auto"
+          >
+            Solusi Biomassa Berkelanjutan dari Indonesia
+          </motion.p>
+
+          {/* Description */}
+          <motion.p
+            {...fadeInUp}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="text-lg mb-12 text-gray-200 max-w-2xl mx-auto leading-relaxed"
+          >
+            PT Sembagi Alam Sukses menyediakan woodchip berkualitas tinggi untuk kebutuhan 
+            energi dan industri dengan praktik berkelanjutan dan standar internasional.
+          </motion.p>
+
+          {/* Call-to-Action Buttons */}
+          <motion.div
+            {...fadeInUp}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+          >
+            {/* Primary CTA - WhatsApp */}
+            <button
+              onClick={handleWhatsAppClick}
+              className="btn btn-primary btn-lg group min-w-[200px]"
+            >
+              <span>Hubungi Kami</span>
+              <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+            </button>
+
+            {/* Secondary CTA - Learn More */}
+            <button
+              onClick={handleScrollToContact}
+              className="btn btn-secondary btn-lg group min-w-[200px] bg-transparent border-white text-white hover:bg-white hover:text-primary-600"
+            >
+              <Play className="w-5 h-5 mr-2" />
+              <span>Pelajari Lebih Lanjut</span>
+            </button>
+          </motion.div>
+
+          {/* Key Features Cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+          >
+            {/* Feature 1 */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
+            >
+              <div className="w-12 h-12 bg-accent-200 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                <Leaf className="w-6 h-6 text-primary-700" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Berkelanjutan</h3>
+              <p className="text-gray-200 text-sm">
+                Praktik ramah lingkungan dengan legalitas kayu terjamin
+              </p>
+            </motion.div>
+
+            {/* Feature 2 */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
+            >
+              <div className="w-12 h-12 bg-accent-200 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                <div className="w-6 h-6 bg-primary-700 rounded-full"></div>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Kualitas Tinggi</h3>
+              <p className="text-gray-200 text-sm">
+                Standar internasional dengan kapasitas 1.000-5.000 ton/bulan
+              </p>
+            </motion.div>
+
+            {/* Feature 3 */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
+            >
+              <div className="w-12 h-12 bg-accent-200 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                <div className="w-6 h-6 border-2 border-primary-700 rounded-lg"></div>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Suplai Stabil</h3>
+              <p className="text-gray-200 text-sm">
+                Jaringan petani lokal dan industri untuk kontinuitas produksi
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center"
+        >
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            className="w-1 h-3 bg-white/70 rounded-full mt-2"
+          />
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
+import { useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
+import { ModalProps } from '@/types';
+
+export default function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalProps) {
+  // Handle ESC key press
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, onClose]);
+
+  const sizeClasses = {
+    sm: 'max-w-md',
+    md: 'max-w-lg',
+    lg: 'max-w-2xl',
+    xl: 'max-w-4xl',
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 overflow-y-auto">
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
+            onClick={onClose}
+          />
+
+          {/* Modal Container */}
+          <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.2 }}
+              className={`relative transform overflow-hidden rounded-2xl bg-white shadow-2xl transition-all w-full ${sizeClasses[size]}`}
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+                <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
+                <button
+                  onClick={onClose}
+                  className="p-2 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Modal Content */}
+              <div className="px-6 py-6">
+                {children}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+}
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Phone, Mail } from 'lucide-react';
+import { navItems, contactInfo } from '../utils/constants';
+
+interface NavbarProps {
+  className?: string;
+}
+
+export default function Navbar({ className = '' }: NavbarProps) {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Handle mobile menu toggle
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Handle nav link click
+  const handleNavClick = (href: string) => {
+    setIsMobileMenuOpen(false);
+    
+    if (href.startsWith('#')) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  return (
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'navbar-blur shadow-lg' : 'bg-transparent'
+      } ${className}`}
+    >
+      <div className="container-responsive">
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          {/* Logo */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-center space-x-3"
+          >
+            <img
+              src="/assets/images/1-logo-navbar.png"
+              alt="Sembagi Green Resources"
+              className="h-8 lg:h-10 w-auto"
+            />
+            <div className="hidden sm:block">
+              <h1 className="text-lg lg:text-xl font-bold text-primary-600">
+                Sembagi Green Resources
+              </h1>
+              <p className="text-xs text-gray-600 hidden lg:block">
+                Go Green with Renewable Energy
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {navItems.map((item, index) => (
+              <motion.a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.href);
+                }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="relative text-gray-700 hover:text-primary-600 font-medium transition-colors duration-200 group"
+              >
+                {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200 group-hover:w-full" />
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Contact Info & Mobile Menu Button */}
+          <div className="flex items-center space-x-4">
+            {/* WhatsApp Button - Desktop */}
+            <motion.a
+              href={`https://wa.me/6282150617811?text=Halo, saya tertarik dengan produk woodchip Sembagi Green Resources`}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="hidden lg:flex items-center space-x-2 bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors duration-200"
+            >
+              <Phone className="w-4 h-4" />
+              <span className="text-sm font-medium">WhatsApp</span>
+            </motion.a>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={toggleMobileMenu}
+              className="lg:hidden p-2 text-gray-700 hover:text-primary-600 transition-colors duration-200"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="lg:hidden bg-white border-t border-gray-100 shadow-lg"
+          >
+            <div className="container-responsive py-4">
+              <div className="flex flex-col space-y-4">
+                {/* Navigation Links */}
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(item.href);
+                    }}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-200 py-2"
+                  >
+                    {item.label}
+                  </motion.a>
+                ))}
+
+                {/* Contact Buttons */}
+                <div className="flex flex-col space-y-3 pt-4 border-t border-gray-100">
+                  <motion.a
+                    href={`https://wa.me/6282150617811?text=Halo, saya tertarik dengan produk woodchip Sembagi Green Resources`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex items-center justify-center space-x-2 bg-primary-600 text-white px-4 py-3 rounded-lg hover:bg-primary-700 transition-colors duration-200"
+                  >
+                    <Phone className="w-4 h-4" />
+                    <span className="font-medium">WhatsApp: {contactInfo.whatsappName}</span>
+                  </motion.a>
+
+                  <motion.a
+                    href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick('#contact');
+                    }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="flex items-center justify-center space-x-2 border-2 border-primary-600 text-primary-600 px-4 py-3 rounded-lg hover:bg-primary-50 transition-colors duration-200"
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span className="font-medium">Kontak Form</span>
+                  </motion.a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+}
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Package, Thermometer, Droplets, Scale, MessageSquare, Eye } from 'lucide-react';
+import { Product } from '@/types';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+interface ProductCardProps {
+  product: Product;
+  viewMode: 'grid' | 'list';
+  onRequestQuote: (productId: string) => void;
+}
+
+export default function ProductCard({ product, viewMode, onRequestQuote }: ProductCardProps) {
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const handleImageClick = (index: number) => {
+    setSelectedImageIndex(index);
+    setIsImageModalOpen(true);
+  };
+
+  if (viewMode === 'list') {
+    return (
+      <motion.div
+        whileHover={{ scale: 1.01 }}
+        className="card card-hover p-6"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+          {/* Product Image */}
+          <div className="relative">
+            <img
+              src={product.images[0]}
+              alt={product.name}
+              className="w-full h-48 object-cover rounded-lg cursor-pointer"
+              onClick={() => handleImageClick(0)}
+            />
+            {product.featured && (
+              <div className="absolute top-3 left-3 bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                Unggulan
+              </div>
+            )}
+          </div>
+
+          {/* Product Info */}
+          <div className="md:col-span-2 space-y-4">
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{product.name}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{product.description}</p>
+            </div>
+
+            {/* Key Specs */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+              <div className="flex items-center space-x-2">
+                <Scale className="w-4 h-4 text-primary-600" />
+                <div>
+                  <div className="font-medium">Tebal</div>
+                  <div className="text-gray-600">{product.specs.thickness}</div>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Droplets className="w-4 h-4 text-blue-600" />
+                <div>
+                  <div className="font-medium">Kadar Air</div>
+                  <div className="text-gray-600">{product.specs.moistureContent}</div>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Thermometer className="w-4 h-4 text-red-600" />
+                <div>
+                  <div className="font-medium">Kalori</div>
+                  <div className="text-gray-600">{product.specs.calorificValue}</div>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Package className="w-4 h-4 text-gray-600" />
+                <div>
+                  <div className="font-medium">Kapasitas</div>
+                  <div className="text-gray-600">{product.specs.capacity}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Button */}
+            <button
+              onClick={() => onRequestQuote(product.id)}
+              className="btn btn-primary btn-md"
+            >
+              <MessageSquare className="w-4 h-4 mr-2" />
+              Request Quote
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  return (
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      className="card card-hover overflow-hidden"
+    >
+      {/* Product Images Carousel */}
+      <div className="relative h-64">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          className="h-full"
+        >
+          {product.images.map((image, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={image}
+                alt={`${product.name} - Image ${index + 1}`}
+                className="w-full h-full object-cover cursor-pointer"
+                onClick={() => handleImageClick(index)}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Featured Badge */}
+        {product.featured && (
+          <div className="absolute top-4 left-4 bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-medium z-10">
+            Unggulan
+          </div>
+        )}
+
+        {/* View Images Button */}
+        <button
+          onClick={() => handleImageClick(0)}
+          className="absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors z-10"
+        >
+          <Eye className="w-4 h-4" />
+        </button>
+      </div>
+
+      {/* Product Content */}
+      <div className="p-6 space-y-4">
+        {/* Product Name & Description */}
+        <div>
+          <h3 className="text-xl font-bold text-gray-900 mb-2">{product.name}</h3>
+          <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+            {product.description}
+          </p>
+        </div>
+
+        {/* Key Specifications */}
+        <div className="space-y-3">
+          <h4 className="font-semibold text-gray-900">Spesifikasi Utama:</h4>
+          <div className="grid grid-cols-2 gap-3 text-sm">
+            <div className="flex items-center space-x-2">
+              <Scale className="w-4 h-4 text-primary-600 flex-shrink-0" />
+              <div>
+                <div className="font-medium">Dimensi</div>
+                <div className="text-gray-600">{product.specs.thickness}</div>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Droplets className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <div>
+                <div className="font-medium">Kadar Air</div>
+                <div className="text-gray-600">{product.specs.moistureContent}</div>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Thermometer className="w-4 h-4 text-red-600 flex-shrink-0" />
+              <div>
+                <div className="font-medium">Nilai Kalori</div>
+                <div className="text-gray-600">{product.specs.calorificValue}</div>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Package className="w-4 h-4 text-gray-600 flex-shrink-0" />
+              <div>
+                <div className="font-medium">Kapasitas</div>
+                <div className="text-gray-600">{product.specs.capacity}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Wood Types */}
+        <div>
+          <h4 className="font-semibold text-gray-900 mb-2">Jenis Kayu:</h4>
+          <div className="flex flex-wrap gap-2">
+            {product.specs.woodTypes.slice(0, 3).map((woodType, index) => (
+              <span
+                key={index}
+                className="bg-accent-100 text-primary-700 px-2 py-1 rounded-lg text-xs font-medium"
+              >
+                {woodType}
+              </span>
+            ))}
+            {product.specs.woodTypes.length > 3 && (
+              <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-lg text-xs">
+                +{product.specs.woodTypes.length - 3} lainnya
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Action Button */}
+        <button
+          onClick={() => onRequestQuote(product.id)}
+          className="w-full btn btn-primary btn-md group"
+        >
+          <MessageSquare className="w-4 h-4 mr-2" />
+          <span>Request Penawaran</span>
+        </button>
+      </div>
+
+      {/* Image Modal would go here - simplified for now */}
+      {isImageModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          onClick={() => setIsImageModalOpen(false)}
+        >
+          <div className="relative max-w-4xl max-h-full">
+            <img
+              src={product.images[selectedImageIndex]}
+              alt={product.name}
+              className="max-w-full max-h-full object-contain rounded-lg"
+            />
+            <button
+              onClick={() => setIsImageModalOpen(false)}
+              className="absolute top-4 right-4 bg-white/10 text-white p-2 rounded-full hover:bg-white/20 transition-colors"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+    </motion.div>
+  );
+}
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Filter, Grid, List, MessageSquare, Download } from 'lucide-react';
+import { products, fadeInUp, staggerContainer } from '../utils/constants';
+import ProductCard from '@/components/ProductCard';
+import Modal from '@/components/Modal';
+import QuoteForm from '@/components/QuoteForm';
+
+interface ProductsProps {
+  className?: string;
+}
+
+export default function Products({ className = '' }: ProductsProps) {
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [filterBy, setFilterBy] = useState<'all' | 'featured'>('all');
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+
+  // Filter products
+  const filteredProducts = products.filter(product => 
+    filterBy === 'all' || (filterBy === 'featured' && product.featured)
+  );
+
+  const handleRequestQuote = (productId: string) => {
+    setSelectedProduct(productId);
+    setIsQuoteModalOpen(true);
+  };
+
+  const handleDownloadCatalog = () => {
+    // Open PDF catalog
+    window.open('/assets/doc/Katalog Woodchip.pdf', '_blank');
+  };
+
+  return (
+    <section id="products" className={`section-padding bg-white ${className}`}>
+      <div className="container-responsive">
+        {/* Section Header */}
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="text-center mb-16"
+        >
+          <motion.span
+            variants={fadeInUp}
+            className="inline-block text-primary-600 font-semibold text-lg mb-3"
+          >
+            Produk Kami
+          </motion.span>
+          <motion.h2
+            variants={fadeInUp}
+            className="heading-secondary text-gray-900 mb-6"
+          >
+            Woodchip Berkualitas Tinggi
+          </motion.h2>
+          <motion.p
+            variants={fadeInUp}
+            className="text-large text-gray-600 max-w-3xl mx-auto mb-8"
+          >
+            Produk woodchip premium dengan spesifikasi terbaik untuk kebutuhan industri energi 
+            terbarukan dan biomassa, diproduksi dengan standar internasional.
+          </motion.p>
+
+          {/* Download Catalog Button */}
+          <motion.button
+            variants={fadeInUp}
+            onClick={handleDownloadCatalog}
+            className="btn btn-outline btn-lg group mb-12"
+          >
+            <Download className="w-5 h-5 mr-2" />
+            <span>Download Katalog</span>
+          </motion.button>
+        </motion.div>
+
+        {/* Filters and View Controls */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4"
+        >
+          {/* Filter Controls */}
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+              <Filter className="w-4 h-4 text-gray-500" />
+              <span className="text-sm text-gray-600">Filter:</span>
+            </div>
+            <select
+              value={filterBy}
+              onChange={(e) => setFilterBy(e.target.value as 'all' | 'featured')}
+              className="form-input py-2 text-sm border-gray-300 rounded-lg"
+            >
+              <option value="all">Semua Produk</option>
+              <option value="featured">Produk Unggulan</option>
+            </select>
+          </div>
+
+          {/* View Mode Controls */}
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`p-2 rounded-lg transition-colors ${
+                viewMode === 'grid' 
+                  ? 'bg-primary-100 text-primary-600' 
+                  : 'text-gray-400 hover:text-gray-600'
+              }`}
+            >
+              <Grid className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              className={`p-2 rounded-lg transition-colors ${
+                viewMode === 'list' 
+                  ? 'bg-primary-100 text-primary-600' 
+                  : 'text-gray-400 hover:text-gray-600'
+              }`}
+            >
+              <List className="w-4 h-4" />
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Products Grid/List */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={viewMode}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className={
+              viewMode === 'grid'
+                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+                : 'space-y-6'
+            }
+          >
+            {filteredProducts.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <ProductCard
+                  product={product}
+                  viewMode={viewMode}
+                  onRequestQuote={handleRequestQuote}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Empty State */}
+        {filteredProducts.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-16"
+          >
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Filter className="w-8 h-8 text-gray-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              Tidak ada produk ditemukan
+            </h3>
+            <p className="text-gray-600">
+              Coba ubah filter atau hubungi kami untuk informasi produk lainnya.
+            </p>
+          </motion.div>
+        )}
+
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-16"
+        >
+          <div className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl p-8 lg:p-12 text-white">
+            <h3 className="text-2xl lg:text-3xl font-bold mb-4">
+              Butuh Spesifikasi Khusus?
+            </h3>
+            <p className="text-lg mb-8 opacity-90">
+              Kami dapat menyesuaikan produk woodchip sesuai kebutuhan spesifik industri Anda.
+              Hubungi tim kami untuk konsultasi dan penawaran khusus.
+            </p>
+            <button
+              onClick={() => handleRequestQuote('custom')}
+              className="btn bg-white text-primary-600 hover:bg-gray-100 btn-lg group"
+            >
+              <MessageSquare className="w-5 h-5 mr-2" />
+              <span>Konsultasi Gratis</span>
+            </button>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Quote Modal */}
+      <Modal
+        isOpen={isQuoteModalOpen}
+        onClose={() => {
+          setIsQuoteModalOpen(false);
+          setSelectedProduct(null);
+        }}
+        title="Request Penawaran"
+        size="lg"
+      >
+        <QuoteForm
+          productId={selectedProduct}
+          onClose={() => {
+            setIsQuoteModalOpen(false);
+            setSelectedProduct(null);
+          }}
+        />
+      </Modal>
+    </section>
+  );
+}
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Send, User, Building, Mail, Phone, MessageSquare, Package, Hash } from 'lucide-react';
+import { products } from '../utils/constants';
+
+// Form validation schema
+const quoteFormSchema = z.object({
+  name: z.string().min(2, 'Nama minimal 2 karakter').max(100, 'Nama maksimal 100 karakter'),
+  company: z.string().min(2, 'Nama perusahaan minimal 2 karakter').max(100, 'Nama perusahaan maksimal 100 karakter'),
+  email: z.string().email('Email tidak valid').max(255, 'Email maksimal 255 karakter'),
+  phone: z.string().min(10, 'Nomor telepon minimal 10 digit').max(15, 'Nomor telepon maksimal 15 digit'),
+  quantity: z.string().optional(),
+  specifications: z.string().optional(),
+  message: z.string().min(10, 'Pesan minimal 10 karakter').max(1000, 'Pesan maksimal 1000 karakter'),
+});
+
+type QuoteFormData = z.infer<typeof quoteFormSchema>;
+
+interface QuoteFormProps {
+  productId?: string | null;
+  onClose: () => void;
+}
+
+export default function QuoteForm({ productId, onClose }: QuoteFormProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const selectedProduct = productId ? products.find(p => p.id === productId) : null;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<QuoteFormData>({
+    resolver: zodResolver(quoteFormSchema),
+  });
+
+  const onSubmit = async (data: QuoteFormData) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Here you would typically send the data to your backend
+      console.log('Quote form submitted:', { 
+        ...data, 
+        productId,
+        productName: selectedProduct?.name 
+      });
+      
+      setIsSubmitted(true);
+      
+      // Reset form after a delay
+      setTimeout(() => {
+        reset();
+        setIsSubmitted(false);
+        onClose();
+      }, 2000);
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSubmitted) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="text-center py-8"
+      >
+        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">
+          Permintaan Penawaran Terkirim!
+        </h3>
+        <p className="text-gray-600">
+          Terima kasih! Tim kami akan segera menghubungi Anda dalam 1x24 jam.
+        </p>
+      </motion.div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {/* Selected Product Info */}
+      {selectedProduct && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-primary-50 border border-primary-200 rounded-lg p-4"
+        >
+          <div className="flex items-center space-x-3">
+            <Package className="w-5 h-5 text-primary-600" />
+            <div>
+              <h4 className="font-semibold text-primary-900">{selectedProduct.name}</h4>
+              <p className="text-sm text-primary-700">Produk yang dipilih untuk penawaran</p>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Personal Information */}
+        <div className="space-y-4">
+          <h4 className="font-semibold text-gray-900 flex items-center">
+            <User className="w-4 h-4 mr-2" />
+            Informasi Personal
+          </h4>
+
+          {/* Name */}
+          <div>
+            <label className="form-label">
+              Nama Lengkap *
+            </label>
+            <input
+              {...register('name')}
+              type="text"
+              className={`form-input ${errors.name ? 'border-red-500' : ''}`}
+              placeholder="Masukkan nama lengkap"
+            />
+            {errors.name && (
+              <p className="form-error">{errors.name.message}</p>
+            )}
+          </div>
+
+          {/* Company */}
+          <div>
+            <label className="form-label">
+              Nama Perusahaan *
+            </label>
+            <input
+              {...register('company')}
+              type="text"
+              className={`form-input ${errors.company ? 'border-red-500' : ''}`}
+              placeholder="Masukkan nama perusahaan"
+            />
+            {errors.company && (
+              <p className="form-error">{errors.company.message}</p>
+            )}
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="form-label">
+              Email *
+            </label>
+            <input
+              {...register('email')}
+              type="email"
+              className={`form-input ${errors.email ? 'border-red-500' : ''}`}
+              placeholder="nama@perusahaan.com"
+            />
+            {errors.email && (
+              <p className="form-error">{errors.email.message}</p>
+            )}
+          </div>
+
+          {/* Phone */}
+          <div>
+            <label className="form-label">
+              Nomor Telepon *
+            </label>
+            <input
+              {...register('phone')}
+              type="tel"
+              className={`form-input ${errors.phone ? 'border-red-500' : ''}`}
+              placeholder="0812-3456-7890"
+            />
+            {errors.phone && (
+              <p className="form-error">{errors.phone.message}</p>
+            )}
+          </div>
+        </div>
+
+        {/* Product Requirements */}
+        <div className="space-y-4">
+          <h4 className="font-semibold text-gray-900 flex items-center">
+            <Hash className="w-4 h-4 mr-2" />
+            Kebutuhan Produk
+          </h4>
+
+          {/* Quantity */}
+          <div>
+            <label className="form-label">
+              Kuantitas yang Dibutuhkan
+            </label>
+            <input
+              {...register('quantity')}
+              type="text"
+              className="form-input"
+              placeholder="Contoh: 1000 ton/bulan"
+            />
+          </div>
+
+          {/* Specifications */}
+          <div>
+            <label className="form-label">
+              Spesifikasi Khusus
+            </label>
+            <textarea
+              {...register('specifications')}
+              className="form-textarea h-24"
+              placeholder="Deskripsikan spesifikasi khusus yang dibutuhkan..."
+            />
+          </div>
+
+          {/* Message */}
+          <div>
+            <label className="form-label">
+              Pesan Tambahan *
+            </label>
+            <textarea
+              {...register('message')}
+              className={`form-textarea h-28 ${errors.message ? 'border-red-500' : ''}`}
+              placeholder="Jelaskan kebutuhan Anda secara detail atau pertanyaan lainnya..."
+            />
+            {errors.message && (
+              <p className="form-error">{errors.message.message}</p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Form Actions */}
+      <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-100">
+        <button
+          type="button"
+          onClick={onClose}
+          className="btn btn-secondary btn-lg order-2 sm:order-1"
+        >
+          Batal
+        </button>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="btn btn-primary btn-lg group order-1 sm:order-2 flex-1"
+        >
+          {isSubmitting ? (
+            <>
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+              Mengirim...
+            </>
+          ) : (
+            <>
+              <Send className="w-4 h-4 mr-2" />
+              Kirim Permintaan Penawaran
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* Contact Info Footer */}
+      <div className="bg-gray-50 rounded-lg p-4 text-center text-sm text-gray-600">
+        <p>
+          Atau hubungi langsung via WhatsApp:{' '}
+          <a 
+            href="https://wa.me/6282150617811?text=Halo, saya ingin request penawaran woodchip"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-600 hover:text-primary-700 font-medium"
+          >
+            +62 821 5061 7811
+          </a>
+        </p>
+      </div>
+    </form>
+  );
+}
+import { motion } from 'framer-motion';
+import { Leaf, Globe, Users, Recycle, ArrowRight, TreePine, Factory, Lightbulb } from 'lucide-react';
+import { sustainabilityFeatures, fadeInUp, staggerContainer } from '../utils/constants';
+
+interface SustainabilityProps {
+  className?: string;
+}
+
+// Icon mapping
+const iconMap = {
+  leaf: Leaf,
+  globe: Globe,
+  users: Users,
+  recycle: Recycle,
+  tree: TreePine,
+  factory: Factory,
+  lightbulb: Lightbulb,
+};
+
+export default function Sustainability({ className = '' }: SustainabilityProps) {
+  return (
+    <section id="sustainability" className={`section-padding bg-gradient-to-br from-primary-50 to-accent-50 ${className}`}>
+      <div className="container-responsive">
+        {/* Section Header */}
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="text-center mb-16"
+        >
+          <motion.span
+            variants={fadeInUp}
+            className="inline-block text-primary-600 font-semibold text-lg mb-3"
+          >
+            Komitmen Keberlanjutan
+          </motion.span>
+          <motion.h2
+            variants={fadeInUp}
+            className="heading-secondary text-gray-900 mb-6"
+          >
+            Berkontribusi untuk Masa Depan Berkelanjutan
+          </motion.h2>
+          <motion.p
+            variants={fadeInUp}
+            className="text-large text-gray-600 max-w-3xl mx-auto"
+          >
+            Melalui praktik bisnis yang bertanggung jawab, kami berkomitmen mendukung 
+            transisi energi terbarukan dan pembangunan berkelanjutan di Indonesia.
+          </motion.p>
+        </motion.div>
+
+        {/* Features Grid */}
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16"
+        >
+          {sustainabilityFeatures.map((feature, index) => {
+            const IconComponent = iconMap[feature.icon as keyof typeof iconMap] || Leaf;
+            
+            return (
+              <motion.div
+                key={feature.id}
+                variants={fadeInUp}
+                whileHover={{ scale: 1.03 }}
+                className="card card-hover p-8 group"
+              >
+                <div className="flex items-start space-x-6">
+                  {/* Icon */}
+                  <div className="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary-200 transition-colors duration-300">
+                    <IconComponent className="w-7 h-7 text-primary-600" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-700 transition-colors">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-600 mb-6 leading-relaxed">
+                      {feature.description}
+                    </p>
+
+                    {/* Benefits List */}
+                    <ul className="space-y-2">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <li key={benefitIndex} className="flex items-start space-x-2 text-sm">
+                          <div className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-gray-700">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Stats Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-white rounded-2xl p-8 lg:p-12 shadow-xl mb-16"
+        >
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Stat 1 */}
+            <div className="text-center">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+                className="text-3xl lg:text-4xl font-bold text-primary-600 mb-2"
+              >
+                100%
+              </motion.div>
+              <div className="text-sm text-gray-600">
+                <div className="font-medium">Legal Kayu</div>
+                <div>Bersertifikat</div>
+              </div>
+            </div>
+
+            {/* Stat 2 */}
+            <div className="text-center">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, type: 'spring', stiffness: 200 }}
+                className="text-3xl lg:text-4xl font-bold text-primary-600 mb-2"
+              >
+                50+
+              </motion.div>
+              <div className="text-sm text-gray-600">
+                <div className="font-medium">Petani Mitra</div>
+                <div>Lokal</div>
+              </div>
+            </div>
+
+            {/* Stat 3 */}
+            <div className="text-center">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, type: 'spring', stiffness: 200 }}
+                className="text-3xl lg:text-4xl font-bold text-primary-600 mb-2"
+              >
+                80%
+              </motion.div>
+              <div className="text-sm text-gray-600">
+                <div className="font-medium">Pengurangan</div>
+                <div>Emisi CO₂</div>
+              </div>
+            </div>
+
+            {/* Stat 4 */}
+            <div className="text-center">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.8, type: 'spring', stiffness: 200 }}
+                className="text-3xl lg:text-4xl font-bold text-primary-600 mb-2"
+              >
+                95%
+              </motion.div>
+              <div className="text-sm text-gray-600">
+                <div className="font-medium">Pemanfaatan</div>
+                <div>Limbah Kayu</div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Process Flow */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-white rounded-2xl p-8 lg:p-12 shadow-xl mb-16"
+        >
+          <div className="text-center mb-12">
+            <h3 className="heading-tertiary text-gray-900 mb-4">
+              Proses Produksi Berkelanjutan
+            </h3>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Dari hutan hingga energi, setiap tahap dipantau untuk memastikan keberlanjutan
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {/* Step 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-center"
+            >
+              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <TreePine className="w-8 h-8 text-primary-600" />
+              </div>
+              <h4 className="font-semibold text-gray-900 mb-2">Sumber Legal</h4>
+              <p className="text-sm text-gray-600">Kayu dari hutan bersertifikat dan limbah industri</p>
+            </motion.div>
+
+            {/* Arrow */}
+            <div className="hidden md:flex items-center justify-center">
+              <ArrowRight className="w-6 h-6 text-gray-400" />
+            </div>
+
+            {/* Step 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="text-center"
+            >
+              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Factory className="w-8 h-8 text-primary-600" />
+              </div>
+              <h4 className="font-semibold text-gray-900 mb-2">Produksi</h4>
+              <p className="text-sm text-gray-600">Pengolahan dengan teknologi ramah lingkungan</p>
+            </motion.div>
+
+            {/* Arrow */}
+            <div className="hidden md:flex items-center justify-center">
+              <ArrowRight className="w-6 h-6 text-gray-400" />
+            </div>
+
+            {/* Step 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+              className="text-center"
+            >
+              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Lightbulb className="w-8 h-8 text-primary-600" />
+              </div>
+              <h4 className="font-semibold text-gray-900 mb-2">Energi Bersih</h4>
+              <p className="text-sm text-gray-600">Woodchip untuk biomassa dan energi terbarukan</p>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          <div className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl p-8 lg:p-12 text-white">
+            <h3 className="text-2xl lg:text-3xl font-bold mb-4">
+              Mari Bersama Membangun Masa Depan Berkelanjutan
+            </h3>
+            <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+              Bergabunglah dengan misi kami untuk menciptakan solusi energi yang ramah lingkungan 
+              dan mendukung ekonomi lokal melalui praktik bisnis yang bertanggung jawab.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#contact"
+                className="btn bg-white text-primary-600 hover:bg-gray-100 btn-lg"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Hubungi Kami
+              </a>
+              <a
+                href="/assets/doc/Katalog Woodchip.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn border-2 border-white text-white hover:bg-white hover:text-primary-600 btn-lg"
+              >
+                Download Katalog
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

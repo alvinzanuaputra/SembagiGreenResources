@@ -1,0 +1,58 @@
+{
+  "name": "sembagi-green-resources",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Landing page website untuk PT Sembagi Alam Sukses - Penyedia Woodchip Berkelanjutan",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:optimized": "npm run optimize:images && npm run build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "optimize:images": "powershell -ExecutionPolicy Bypass -File optimize-images.ps1",
+    "analyze:bundle": "npx vite-bundle-analyzer dist",
+    "deploy:vercel": "npm run build:optimized && echo 'Optimized build complete for Vercel'",
+    "deploy:netlify": "npm run build:optimized && echo 'Optimized build complete for Netlify'"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@hookform/resolvers": "^3.3.2",
+    "@phosphor-icons/react": "^2.1.10",
+    "clsx": "^2.0.0",
+    "framer-motion": "^10.16.5",
+    "lucide-react": "^0.292.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
+    "react-hook-form": "^7.48.2",
+    "swiper": "^11.0.5",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@types/react-helmet-async": "^1.0.1",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "@vitejs/plugin-react": "^4.1.1",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.53.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.4",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "terser": "^5.44.0",
+    "typescript": "^5.2.2",
+    "vite": "^7.1.6"
+  },
+  "author": "Sembagi Green Resources",
+  "license": "MIT",
+  "keywords": [
+    "woodchip",
+    "biomassa",
+    "energi terbarukan",
+    "sustainability",
+    "indonesia"
+  ]
+}
